@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppParidade.ViewModels"
+             xmlns:models="clr-namespace:AppParidade.Models"
+             x:Class="AppParidade.MainPage"
+             x:DataType="vm:ItemsViewModel"
+             Title="App Paridade">
+    <ContentPage.BindingContext>
+        <vm:ItemsViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Entry Placeholder="Buscar..." Text="{Binding SearchQuery}" />
+            <CollectionView ItemsSource="{Binding FilteredItems}" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Item">
+                        <Frame Padding="10" Margin="5" BorderColor="Gray" CornerRadius="10">
+                            <Label Text="{Binding Name}" FontSize="18"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Carregar nomes do IBGE" Command="{Binding BuscarNomesCommand}" Margin="0,10,0,0"/>
+            <CollectionView ItemsSource="{Binding NomesIBGE}" Margin="0,5,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" FontSize="18"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Ler Geolocalização" Command="{Binding GetLocationCommand}" Margin="0,10,0,0"/>
+            <Label Text="{Binding LocationText}" TextColor="Gray" Margin="0,5,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
