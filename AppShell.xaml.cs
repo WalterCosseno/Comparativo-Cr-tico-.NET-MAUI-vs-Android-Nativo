@@ -1,4 +1,4 @@
-﻿namespace AppParidade
+namespace AppParidade
 {
     public partial class AppShell : Shell
     {
