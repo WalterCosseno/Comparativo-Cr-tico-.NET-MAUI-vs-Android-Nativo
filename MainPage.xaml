@@ -5,34 +5,70 @@
              xmlns:models="clr-namespace:AppParidade.Models"
              x:Class="AppParidade.MainPage"
              x:DataType="vm:ItemsViewModel"
-             Title="App Paridade">
+             Title="SmartCheck"
+             BackgroundColor="White"
+             Shell.BackgroundColor="Red"
+             Shell.TitleColor="White">
+
     <ContentPage.BindingContext>
         <vm:ItemsViewModel />
     </ContentPage.BindingContext>
+
     <ScrollView>
-        <VerticalStackLayout Padding="20">
-            <Entry Placeholder="Buscar..." Text="{Binding SearchQuery}" />
-            <CollectionView ItemsSource="{Binding FilteredItems}" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+        <VerticalStackLayout Padding="20" BackgroundColor="White">
+
+            <Entry Placeholder="Buscar..." 
+                   Text="{Binding SearchQuery}"
+                   BackgroundColor="White"
+                   TextColor="Red"
+                   PlaceholderColor="DarkRed"
+                   Margin="0,0,0,10"/>
+
+            <CollectionView ItemsSource="{Binding FilteredItems}" 
+                          SelectionMode="Single" 
+                          SelectionChanged="OnSelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Item">
-                        <Frame Padding="10" Margin="5" BorderColor="Gray" CornerRadius="10">
-                            <Label Text="{Binding Name}" FontSize="18"/>
+                        <Frame Padding="10" Margin="5" 
+                               BorderColor="Red" 
+                               BackgroundColor="White"
+                               CornerRadius="10">
+                            <Label Text="{Binding Name}" 
+                                   FontSize="18"
+                                   TextColor="Red"/>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Carregar nomes do IBGE" Command="{Binding BuscarNomesCommand}" Margin="0,10,0,0"/>
+            <Button Text="Carregar nomes do IBGE" 
+                    Command="{Binding BuscarNomesCommand}" 
+                    Margin="0,10,0,0"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    BorderColor="DarkRed"/>
+
             <CollectionView ItemsSource="{Binding NomesIBGE}" Margin="0,5,0,0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding .}" FontSize="18"/>
+                        <Label Text="{Binding .}" 
+                               FontSize="18"
+                               TextColor="Red"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Ler Geolocalização" Command="{Binding GetLocationCommand}" Margin="0,10,0,0"/>
-            <Label Text="{Binding LocationText}" TextColor="Gray" Margin="0,5,0,0"/>
+            <Button Text="Ler Geolocalização" 
+                    Command="{Binding GetLocationCommand}" 
+                    Margin="0,10,0,0"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    BorderColor="DarkRed"/>
+
+            <Label Text="{Binding LocationText}" 
+                   TextColor="DarkRed" 
+                   Margin="0,5,0,0"/>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
